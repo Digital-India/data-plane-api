@@ -368,6 +368,11 @@ message RuntimeFilter {
   // Runtime key to get the percentage of requests to be sampled. This runtime
   // control is specified in the range 0-100 and defaults to 0.
   string runtime_key = 1 [(validate.rules).string.min_bytes = 1];
+
+  // If false, then the runtime filter will not pivot on request id. Set this
+  // field to false if you need this runtime filter to function as an
+  // independent random variable when composed with logical operator filters.
+  bool use_stable_request_id = 2 [default = true];
 }
 
 // Performs a logical “and” operation on the result of each filter in filters.
